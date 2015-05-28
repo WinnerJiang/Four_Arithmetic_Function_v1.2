@@ -2,20 +2,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="../scripts/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="login.js" type="text/javascript"></script>
 <title>Login or Sign up to the FAF_v1.2 System</title>
 </head>
 <body>
 <h3>
-	Login or Sign up into the FAF_v1.2 System
+	Login or Sign up to the FAF_v1.2 System
 </h3>
-	<div> Username: <input id="username" type="text"> </div>
+	<div> 
+		<button id="userLogin" >Login</button>
+		<button id="newUserSignUp">Sign up</button>
+	</div>
 	<br>
-	<div> Password: <input id="password" type="text"> </div>
+	<div id="username"> Username: <input id="usernameText" type="text"> </div>
 	<br>
-	<div> confirmPassword: <input id="confirmPassword" type="text"> </div>
+	<div id="password"> Password: <input id="passwordText" type="password"> 
+		<span id="pwWarningMessage" style="color:red" >
+		</span>
+	</div> 
+	<br>
+	<div id="confirmPassword"> confirmPassword: <input id="confirmPasswordText" type="password">
+		<span id="confirmPwWarningMessage" style="color:red" >
+		</span> 
+	</div>
 	<br>
 	<div>
-		  <input id="login" type="button" value="Login"> 
+		  <input id="loginOrSignUp" type="submit" value="Login"> 
 	      <input id="cancel" type="button" value="Cancel">
 	</div>
 	
