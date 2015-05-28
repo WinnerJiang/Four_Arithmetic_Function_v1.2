@@ -48,19 +48,22 @@ $loginOrNot = $_POST['loginOrNot']; //login--true;sign up-- false;
 	echo "line 48";
 	echo $loginOrNot;
 	// insert new user and check user has regiestered
-	 if($loginOrNot===true){
-	 	echo "login /n/r";
+	 if($loginOrNot==="true"){
+	 	echo "line 52";
+
  		//login
  		//find the user in userinfoTB
  		
  		
-	 }else if($loginOrNot===false){
+	 }else if($loginOrNot==="false"){
 	 	//signup
-	 	echo "sign up/n/r";
+	 	echo 'line 62';
+	   echo $username;
+	   echo $password;
 	 	$id = mysql_insert_id();
  		echo $id;
  		//insert new user to userinfoTB
- 		$insertSql = "INSERT INTO `userinfotb`(`userid`, `username`, `password`) VALUES ($id++,'$username','$password')";
+ 		$insertSql = "INSERT INTO userinfoTB (userid, username,password) VALUES ($id++,$username,$password)";
  		mysql_query($insertSql,$con);
  		
 	 }
