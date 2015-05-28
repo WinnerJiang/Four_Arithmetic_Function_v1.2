@@ -10,15 +10,72 @@
  * 
  * 
  */
+ //get the data from login.js
+ 
+$username = $_POST['username'];
+$password = $_POST['password'];
+$loginOrNot = $_POST['loginOrNot']; //login--true;sign up-- false;
+ 
  
  // connect with MySQL
  $con = mysql_connect("localhost","root","");
- if($con)
- 	{
+ if(!$con){
  		die('Could not connect:'. mysql_error());
+ }
+ else{
+ 	// create the db, if has created then manage the tables
+ 	if(mysql_query("CREATE DATEBASE userdb",$con)){
+ 		echo "Database created";
  	}
+
+	mysql_select_db("userdb",$con);
+	 	
+	//find table userdb, if cannot find, then create one.
+	if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '%userinfoTB%'"))==1){
+		//userdb table exist
+		echo "userinfo table exist";
+	}else{
+		//userdb tabe not exist and create a new one
+		echo "userinfo table not exist";
+		$userinfoSql = "CREATE TABLE userinfoTB(" .   //!!!notice: here is "()" not"{}"
+					"userid int," .
+					"username varchar(15)," .
+					"password varchar(20)
+			)";
+		mysql_query($userinfoSql,$con);
+		echo "userinfo table exist now";
+	}
+	echo "line 48";
+	echo $loginOrNot;
+	// insert new user and check user has regiestered
+	 if($loginOrNot===true){
+	 	echo "login /n/r";
+ 		//login
+ 		//find the user in userinfoTB
+ 		
+ 		
+	 }else if($loginOrNot===false){
+	 	//signup
+	 	echo "sign up/n/r";
+	 	$id = mysql_insert_id();
+ 		echo $id;
+ 		//insert new user to userinfoTB
+ 		$insertSql = "INSERT INTO `userinfotb`(`userid`, `username`, `password`) VALUES ($id++,'$username','$password')";
+ 		mysql_query($insertSql,$con);
+ 		
+	 }
+ 		
  
- //find table userdb, if cannot find, then create one.
+ 	
+ 	
+}
+ 
+ 	
+ 
+ 
+ 
+
+ 
  
  //insert the user info into table userdb
  

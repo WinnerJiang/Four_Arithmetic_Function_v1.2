@@ -3,7 +3,7 @@ $(document).ready(function(){
 		var username="";
 		var password="";
 		var confirmPassword="";
-		var login= true;
+		var loginOrNot= true;
 	 
 	// show username and password textbox
 	$("#userLogin").click(function(){
@@ -11,7 +11,7 @@ $(document).ready(function(){
 		$("#confirmPassword").hide();
 		$("#newUserSignUp").hide();
 		$("#loginOrSignUp").val("Login");
-		login = true;
+		loginOrNot = true;
 	});
 	
 	//show the confirm password textbox
@@ -20,7 +20,7 @@ $(document).ready(function(){
 		$("#userLogin").hide();
 		$("#newUserSignUp").hide();
 		$("#loginOrSignUp").val("Sign up");
-		login = false;
+		loginOrNot = false;
 		
 	});
 	
@@ -28,37 +28,39 @@ $(document).ready(function(){
 	$("#loginOrSignUp").click(function(){
 		username = $("#usernameText").val();
 		password =  $("#passwordText").val();
-		if(login ===true){
+		if(loginOrNot ===true){
 			//login
 
 			console.log(username);
 			console.log(username,password);
 		}
-		else if(login === false){
+		else if(loginOrNot === false){
 			//sign up
 			confirmPassword = $("#confirmPasswordText").val();
+			console.log(username);
+			console.log(username,password);
 			console.log(confirmPassword);
 			if(password !==confirmPassword)
 				$("#confirmPwWarningMessage").text ("Password and password confirm values must match!");
 		}
 			
-		sendUserInfoToDB(login, username, password);
+		sendUserInfoToDB(loginOrNot, username, password);
 		
 	});
 	
 	//send the data to login.php
-	function sendUserInfoToDB(username,password){
+	var  sendUserInfoToDB= function(loginOrNot, username, password){
 		$.ajax({
 			type:"POST",
 			url:"login.php",
-			data:{loginOrSignup:login,username:username,password:password},
+			data:{loginOrNot:loginOrNot,username:username,password:password},
 			dataType:"json",
 			success:function(data){
 				console.log("succes to send data to login.php");
 				}
-			}
-		});
-	}
+			});
+		};
+	
 	
 	
 });
