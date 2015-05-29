@@ -56,9 +56,25 @@ $(document).ready(function(){
 			data:{loginOrNot:loginOrNot,username:username,password:password},
 			dataType:"json",
 			success:function(data){
-				console.log("succes to send data to login.php");
-				}
+				console.log(data.sucess);
+				getResponse(data);
+			}
+				
 			});
+		};
+		
+		var getResponse = function(data){
+			console.log("succes to send data to login.php");
+			if(data.sucess=="true"){
+				//jump into calculate.html
+				location.href='calculate.html'; //上面的相当于<a href="newpage.html" target="_self"><img src="img.jpg" /></a>
+//				window.open('caclulate.html'); //相当于<a href="newpage.html" target="_blank"><img src="img.jpg" /></a>
+			}
+			else if (data.sucess =="false"){
+				alert("Log in failed!");
+				//refresh the page
+				
+			}
 		};
 	
 	
